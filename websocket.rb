@@ -35,6 +35,11 @@ def emulator_control_pannel(command)
 		install_apk =   "cd "+sdk_root+" && ./adb -s "+device+" install temp"+device+".apk "
 		puts(install_apk)
     	system(install_apk)
+
+   		lass_name = command_JSON["class_name"]
+    	package_name = command_JSON["package_name"]
+    	launch_app = "cd "+sdk_root+" && ./adb -s "+device+" shell am start -a android.intent.action.MAIN " + package_name + "/." + class_name
+    	system(launch_app)
 	end
 
 end

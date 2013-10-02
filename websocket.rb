@@ -7,7 +7,6 @@ def emulator_control_pannel(command)
 	device = command_JSON['device']
 #	device = "emulator-5558"
 	puts(command_JSON['action'])
-	puts("________________________"+device)
 	if(command_JSON['action'] == "click")
 		parameters = command_JSON['x'] +" "+command_JSON['y']
 		runC  = sdk_root+"adb -s "+device+" shell input tap "+parameters

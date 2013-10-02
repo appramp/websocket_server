@@ -2,7 +2,7 @@ require 'em-websocket'
 require 'json'
 
 def emulator_control_pannel(command)
-	sdk_root="/home/fazil/adt-bundle-linux-x86-20130219/sdk/platform-tools/"
+	sdk_root="/home/ubuntu/android-sdk-linux/platform-tools/"
 	command_JSON = JSON.parse(command)
 	device = command_JSON["device"]
 	puts(command_JSON['action'])

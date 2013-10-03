@@ -47,7 +47,12 @@ end
 EventMachine::WebSocket.start(:host => "0.0.0.0", :port => 5900) do |ws|
   ws.onopen    { ws.send "we are connect"}
   ws.onmessage do |msg|
-  	emulator_control_pannel(msg)
+  	begin
+  		emulator_control_pannel(msg)	
+  	rescue Exception => e
+  		puts(e)
+  	end
+  	
   	ws.send "Pong: #{msg}" 
   end
   ws.onclose   { puts "WebSocket closed" }

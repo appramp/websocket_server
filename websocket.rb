@@ -71,7 +71,7 @@ def emulator_control_pannel(command)
 end
 
 def time_diff_secs(start, finish)
-   (finish - start) * 10000.0
+   (finish - start)
 end
 
 

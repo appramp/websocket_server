@@ -7,26 +7,46 @@ def emulator_control_pannel(command)
 	device = command_JSON["device"]
 	puts(command_JSON['action'])
 	if(command_JSON['action'] == "click")
+		t1 = Time.now
 		parameters = command_JSON['x'] +" "+command_JSON['y']
 		runC  = sdk_root+"adb -s "+device+" shell input tap "+parameters
 		system(runC)
+		t2 = Time.now
+    	puts("____________TotalTime_____________")
+    	puts(time_diff_secs(t1,t2))
+    	puts("___________________________________")
 	end
 
 	if (command_JSON['action'] == 'swipe')
+		t1 = Time.now
 		parameters = command_JSON["xi"] +" "+command_JSON["yi"]
 		parameters = parameters + " " + command_JSON["xf"] + " " +command_JSON["yf"]
 		command  = sdk_root+"adb -s "+device+" shell input swipe "+parameters
 		system(command)
+		t2 = Time.now
+    	puts("____________TotalTime_____________")
+    	puts(time_diff_secs(t1,t2))
+    	puts("___________________________________")
 	end
 
 	if(command_JSON['action'] == 'back')
+		t1 = Time.now
 		command  = sdk_root+"adb -s "+device+" shell input keyevent 4"
       	system(command)
+      	t2 = Time.now
+    	puts("____________TotalTime_____________")
+    	puts(time_diff_secs(t1,t2))
+    	puts("___________________________________")
 	end
 
 	if(command_JSON['action'] == 'unlock')
+		t1 = Time.now
 		command = sdk_root+"adb -s "+device+" shell input keyevent 82"
 		system(command)
+		t2 = Time.now
+    	puts("____________TotalTime_____________")
+    	puts(time_diff_secs(t1,t2))
+    	puts("___________________________________")
 	end
 
 	if(command_JSON["action"] == "install")
@@ -43,14 +63,14 @@ def emulator_control_pannel(command)
     	system(launch_app)
     	t2 = Time.now
     	puts("____________TotalTime_____________")
-    	puts(time_diff_milli(t1,t2))
+    	puts(time_diff_secs(t1,t2))
     	puts("___________________________________")
 	end
 
 end
 
-def time_diff_milli(start, finish)
-   (finish - start) * 1000.0
+def time_diff_secs(start, finish)
+   (finish - start) * 10000.0
 end
 
 

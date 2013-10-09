@@ -57,9 +57,10 @@ def emulator_control_pannel(command)
 		#puts(install_apk)
     	system(install_apk)
 
-   		class_name = command_JSON["class_name"]
-    	package_name = command_JSON["package_name"]
-    	launch_app = "cd "+sdk_root+" && ./adb -s "+device+" shell am start -a android.intent.action.MAIN " + package_name + "/." + class_name
+   		#class_name = command_JSON["class_name"]
+    	#package_name = command_JSON["package_name"]
+    	
+    	#launch_app = "cd "+sdk_root+" && ./adb -s "+device+" shell am start -a android.intent.action.MAIN " + package_name + "/." + class_name
     	system(launch_app)
     	t2 = Time.now
     	puts("____________TotalTime_____________")
@@ -72,7 +73,7 @@ end
 def time_diff_secs(start, finish)
    (finish - start)
 end
-
+	
 
 EventMachine::WebSocket.start(:host => "0.0.0.0", :port => 5900) do |ws|
   ws.onopen    { ws.send "we are connect"}

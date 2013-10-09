@@ -85,7 +85,7 @@ EventMachine::WebSocket.start(:host => "0.0.0.0", :port => 5900) do |ws|
   		puts(e)
   	end
   	
-  	ws.send "Pong: #{msg}" 
+  	ws.send "{result: #{msg}}" 
   end
   ws.onclose   { puts "WebSocket closed" }
 end

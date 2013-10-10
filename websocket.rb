@@ -67,7 +67,8 @@ EventMachine::WebSocket.start(:host => "0.0.0.0", :port => 5900) do |ws|
   	rescue Exception => e
   		puts(e)
   	end	
-  	ws.send result.to_s 
+  	ws.send result.to_json
+  	 
   end
   #ws.onclose   { puts "WebSocket closed" }
 end

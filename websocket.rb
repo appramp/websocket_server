@@ -36,14 +36,13 @@ def emulator_control_pannel(command)
 		url = "wget '"+ command_JSON["url"] + "' -O "+  sdk_root+"temp"+device+".apk "
 		system(url)
 		install_apk =   "cd "+sdk_root+" && ./adb -s "+device+" install temp"+device+".apk "
-		#puts(install_apk)
-    	system(install_apk)
+		system(install_apk)
 
-   		#class_name = command_JSON["class_name"]
-    	#package_name = command_JSON["package_name"]
+   		class_name = command_JSON["class_name"]
+    	package_name = command_JSON["package_name"]
     	
-    	#launch_app = "cd "+sdk_root+" && ./adb -s "+device+" shell am start -a android.intent.action.MAIN " + package_name + "/." + class_name
-    	#system(launch_app)
+    	launch_app = "cd "+sdk_root+" && ./adb -s "+device+" shell am start -a android.intent.action.MAIN " + package_name + "/." + class_name
+    	system(launch_app)
     	
 	end
 	t2 = Time.now

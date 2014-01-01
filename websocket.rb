@@ -42,6 +42,7 @@ def emulator_control_pannel(command)
     	package_name = command_JSON["package_name"]
     	
     	launch_app = "cd "+sdk_root+" && ./adb -s "+device+" shell am start -a android.intent.action.MAIN " + package_name + "/." + class_name
+    	sleep(120)
     	system(launch_app)
     	
 	end

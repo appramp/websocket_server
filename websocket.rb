@@ -26,11 +26,18 @@ def emulator_control_pannel(command)
 		command  = sdk_root+"adb -s "+device+" shell input keyevent 4"
       	system(command)
     end
+    
 
 	if(command_JSON['action'] == 'unlock')
 		command = sdk_root+"adb -s "+device+" shell input keyevent 82"
 		system(command)
 	end
+	
+	if(command_JSON['action'] == 'uninstall')
+		launch_app = "cd "+sdk_root+" && ./adb -s "+device+" uninstall  " + package_name 
+    	system(launch_app)
+
+    end
 
 	if(command_JSON["action"] == "install")
 		url = "wget '"+ command_JSON["url"] + "' -O "+  sdk_root+"temp"+device+".apk "

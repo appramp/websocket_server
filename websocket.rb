@@ -40,9 +40,9 @@ def emulator_control_pannel(command)
   end
 
   if(command_JSON["action"] == "install")
-    url = "wget '"+ command_JSON["url"] + "' -O "+  sdk_root+"temp"+device+".apk "
+    url = "wget '"+ command_JSON["url"] + "' -O "+  sdk_root+"temp"+t1+".apk "
     system(url)
-    install_apk =   "cd "+sdk_root+" && ./adb -s "+device+" install temp"+device+".apk "
+    install_apk =   "cd "+sdk_root+" && ./adb -s "+device+" install temp"+t1+".apk "
     system(install_apk)
 
     class_name = command_JSON["class_name"]

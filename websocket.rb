@@ -51,7 +51,7 @@ def emulator_control_pannel(command)
     launch_app = "cd "+sdk_root+" && ./adb -s "+device+" shell am start -a android.intent.action.MAIN " + package_name + "/" + class_name
     system(launch_app)
     
-     remove_apk = "rm "sdk_root +"temp"+device+".apk "
+     remove_apk = "rm "+sdk_root+"temp"+device+".apk "
     system (remove_apk)
 
   end

@@ -40,9 +40,9 @@ def emulator_control_pannel(command)
   end
 
   if(command_JSON["action"] == "install")
-    url = "wget '"+ command_JSON["url"] + "' -O "+  sdk_root+"temp"+t1+".apk "
+    url = "wget '"+ command_JSON["url"] + "' -O "+  sdk_root+"temp"+device+".apk "
     system(url)
-    install_apk =   "cd "+sdk_root+" && ./adb -s "+device+" install temp"+t1+".apk "
+    install_apk =   "cd "+sdk_root+" && ./adb -s "+device+" install temp"+device+".apk "
     system(install_apk)
 
     class_name = command_JSON["class_name"]
@@ -50,6 +50,9 @@ def emulator_control_pannel(command)
 
     launch_app = "cd "+sdk_root+" && ./adb -s "+device+" shell am start -a android.intent.action.MAIN " + package_name + "/" + class_name
     system(launch_app)
+    
+    remove_apk = "rm "sdk_root +"temp"+device+".apk "
+    system ()
 
   end
   t2 = Time.now

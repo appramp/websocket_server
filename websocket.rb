@@ -10,19 +10,19 @@ def emulator_control_pannel(command)
   puts(command_JSON['action'])
   if(command_JSON['action'] == "click")
     parameters = command_JSON['x'] +" "+command_JSON['y']
-    runC  = sdk_root+"adb -s "+device+" shell input tap "+parameters
+    runC = sdk_root+"adb -s "+device+" shell input tap "+parameters
     system(runC)
   end
 
   if (command_JSON['action'] == 'swipe')
     parameters = command_JSON["xi"] +" "+command_JSON["yi"]
     parameters = parameters + " " + command_JSON["xf"] + " " +command_JSON["yf"]
-    command  = sdk_root+"adb -s "+device+" shell input swipe "+parameters
+    command = sdk_root+"adb -s "+device+" shell input swipe "+parameters
     system(command)
   end
 
   if(command_JSON['action'] == 'back')
-    command  = sdk_root+"adb -s "+device+" shell input keyevent 4"
+    command = sdk_root+"adb -s "+device+" shell input keyevent 4"
     system(command)
   end
 
@@ -34,15 +34,15 @@ def emulator_control_pannel(command)
 
   if(command_JSON['action'] == 'uninstall')
     package_name = command_JSON["package_name"]
-    launch_app = "cd "+sdk_root+" && ./adb -s "+device+" uninstall  " + package_name
+    launch_app = "cd "+sdk_root+" && ./adb -s "+device+" uninstall " + package_name
     system(launch_app)
 
   end
 
   if(command_JSON["action"] == "install")
-    url = "wget '"+ command_JSON["url"] + "' -O "+  sdk_root+"temp"+device+".apk "
+    url = "wget '"+ command_JSON["url"] + "' -O "+ sdk_root+"temp"+device+".apk "
     system(url)
-    install_apk =   "cd "+sdk_root+" && ./adb -s "+device+" install temp"+device+".apk "
+    install_apk = "cd "+sdk_root+" && ./adb -s "+device+" install temp"+device+".apk "
     system(install_apk)
 
     class_name = command_JSON["class_name"]
@@ -51,7 +51,7 @@ def emulator_control_pannel(command)
     launch_app = "cd "+sdk_root+" && ./adb -s "+device+" shell am start -a android.intent.action.MAIN " + package_name + "/" + class_name
     system(launch_app)
     
-    remove_apk = "rm "sdk_root +"temp"+device+".apk "
+     remove_apk = "rm "sdk_root +"temp"+device+".apk "
     system (remove_apk)
 
   end
@@ -69,7 +69,7 @@ end
 
 
 EventMachine::WebSocket.start(:host => "0.0.0.0", :port => 5900) do |ws|
-  ws.onopen    { puts("we are connect")}
+  ws.onopen { puts("we are connect")}
   ws.onmessage do |msg|
     begin
       result=emulator_control_pannel(msg)
@@ -79,6 +79,5 @@ EventMachine::WebSocket.start(:host => "0.0.0.0", :port => 5900) do |ws|
     ws.send result.to_json
 
   end
-  ws.onclose   { puts "WebSocket closed" }
+  ws.onclose { puts "WebSocket closed" }
 end
-

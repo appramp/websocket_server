@@ -52,7 +52,7 @@ def emulator_control_pannel(command)
     system(launch_app)
     
     remove_apk = "rm "sdk_root +"temp"+device+".apk "
-    system ()
+    system (remove_apk)
 
   end
   t2 = Time.now

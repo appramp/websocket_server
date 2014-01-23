@@ -25,6 +25,11 @@ def emulator_control_pannel(command)
     command = sdk_root+"adb -s "+device+" shell input keyevent 4"
     system(command)
   end
+  
+   if(command_JSON['action'] == 'right')
+    command = sdk_root+"adb -s "+device+" shell input keyevent 2"
+    system(command)
+  end
 
 
   if(command_JSON['action'] == 'unlock')
